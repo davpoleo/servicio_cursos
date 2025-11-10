@@ -1,0 +1,16 @@
+#Este es el archivo de configuracion
+server:
+  port: 8082
+
+spring:
+  profiles:
+    active: dev
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
+    spring:
+      application:
+        name: servicio-cursos
