@@ -3,7 +3,6 @@ package academiadigital.servicio_cursos.exception;
 //Esta clase escuchara las excepciones de cualquier @RestController
 
 import academiadigital.servicio_cursos.dto.ErrorResponseDto;
-import academiadigital.servicio_cursos.handler.RecursoNoEncontradoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
