@@ -17,7 +17,5 @@ public interface CursoService {
     //OBTENER UN CURSO POR ID
     Curso obtenerCursoPorId(Long id);
 
-    //ESTABLECER UNA INSCRIPCION
-    InscripcionResponseDto realizarInscripcion(CursoRequestDto rquest);
-    //OBTENER ESTUDIANTES POR CURSO
+    //OBTENER TODOS LOS CURSOS
 }

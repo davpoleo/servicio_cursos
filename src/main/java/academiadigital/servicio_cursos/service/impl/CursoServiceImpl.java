@@ -10,11 +10,13 @@ import academiadigital.servicio_cursos.model.Curso;
 import academiadigital.servicio_cursos.repository.CursosRepository;
 import academiadigital.servicio_cursos.service.CursoService;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CursoServiceImpl implements CursoService {
 
+    @Autowired
     private final CursosRepository cursosRepository;
     private final MapperCurso mapperCurso;
 
@@ -44,11 +46,10 @@ public class CursoServiceImpl implements CursoService {
                 .orElseThrow(()-> new RecursoNoEncontradoException("El curso con el ID: '"+id+" No existe."));
     }
 
-    @Override
-    public InscripcionResponseDto realizarInscripcion(CursoRequestDto rquest) {
-        return null;
-    }
-
+    //@Override
+    //public InscripcionResponseDto realizarInscripcion(CursoRequestDto rquest) {
+    //    return null;
+    //}
     /*  METODO VIEJO SIN LOS REFACTORS
     * public InscripcionDto crearinscripcion(InscripcionRequestDto requestDto){
         //Verficacion de la existencia del curso
