@@ -42,6 +42,14 @@ public class CursoController {
         return new ResponseEntity<>(cursoCreado, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Buscar curso por ID.",
+            description = "Busca un curso por su ID")
+    @ApiResponse(responseCode = "200", description = "Curso encontrado",
+            content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = EstudianteResponseDto.class)))
+    @ApiResponse(responseCode = "404", description = "EL curso no esta registrado en el Sistema",
+            content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = ErrorResponseDto.class)))
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Curso> obtenerCursoPorId(@PathVariable Long id){
@@ -49,6 +57,14 @@ public class CursoController {
     }
 
     // -------- ENDPOINT DE INSCRIPCIONES -------- //
+    @Operation(summary = "Inscribir un Estudiante a un curso",
+            description = "Inscribe un estudiantea un curso existente")
+    @ApiResponse(responseCode = "201", description = "Inscripcion exitosa",
+            content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = EstudianteResponseDto.class)))
+    @ApiResponse(responseCode = "409", description = "Error en las inscripcion",
+            content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = ErrorResponseDto.class)))
     @PostMapping("/inscripciones")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<InscripcionResponseDto> realizarInscripcion(@Valid @RequestBody InscripcionRequestDto request

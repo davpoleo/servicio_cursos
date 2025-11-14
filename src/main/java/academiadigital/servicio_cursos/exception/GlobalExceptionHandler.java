@@ -30,6 +30,20 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorDto, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(RecursoDuplicadoException.class)
+    public ResponseEntity<ErrorResponseDto> handleRecursoDuplicadoException(
+            RecursoDuplicadoException exception,
+            WebRequest webRequest
+    ){
+        ErrorResponseDto errorDto = new ErrorResponseDto(
+                exception.getMessage(),
+                webRequest.getDescription(false),
+                HttpStatus.CONFLICT.value()
+        );
+        return new ResponseEntity<>(errorDto, HttpStatus.CONFLICT);
+    }
+
+
     //Maneja los errore de validacion de DTOs da como resultado un HTTP 400 Bad Request
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponseDto> handleValidationExceptions(

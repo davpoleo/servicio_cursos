@@ -12,3 +12,6 @@ public interface EstudianteFeignClient {
     EstudianteResponseDto obtenerEstudiantePorId(@PathVariable("id") Long id);
 
 }
+//Rest tempale
+//Feing
+//Web client
