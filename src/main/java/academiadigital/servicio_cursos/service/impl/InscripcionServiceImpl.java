@@ -10,14 +10,18 @@ import academiadigital.servicio_cursos.repository.InscripcionRepository;
 import academiadigital.servicio_cursos.service.InscripcionService;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+@Service
 public class InscripcionServiceImpl implements InscripcionService {
 
     @Autowired
     private EstudianteFeignClient estudianteFeignClient;
+    @Autowired
     private InscripcionRepository inscripcionRepository;
+    @Autowired
     private MapperInscripcion mapperInscripcion;
 
     //Obtener informacion de estudiante especifico con el uso de Feing Client

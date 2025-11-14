@@ -18,6 +18,7 @@ public class CursoServiceImpl implements CursoService {
 
     @Autowired
     private final CursosRepository cursosRepository;
+    @Autowired
     private final MapperCurso mapperCurso;
 
     public CursoServiceImpl(CursosRepository cursosRepository, MapperCurso mapperCurso) {
