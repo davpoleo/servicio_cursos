@@ -1,16 +1,26 @@
 package academiadigital.servicio_cursos.client;
 
 import academiadigital.servicio_cursos.dto.EstudianteResponseDto;
+import academiadigital.servicio_cursos.service.util.ApiConstants;
+import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "servicio-estudiantes", url = "http://localhost:8081")
+import static academiadigital.servicio_cursos.service.util.ApiConstants.*;
+
+
+@FeignClient(
+        name = FEING_V1_ESTUDIANTES_NAME,
+        url = FEING_V1_ESTUDIANTES_URL,
+        path = FEING_V1_ESTUDIANTES_PATH
+)
 public interface EstudianteFeignClient {
 
-    @GetMapping("/api/v1/estudiantes/{id}")
-    EstudianteResponseDto obtenerEstudiantePorId(@PathVariable("id") Long id);
-
+    @GetMapping(API_V1_GET_STUDENT_BY_ID)
+    EstudianteResponseDto obtenerEstudiantePorId(@Valid @PathVariable("id") Long id);
+    //ResponseEntity<EstudianteResponseDto> obtenerEstudiantePorId(@PathVariable("id") Long id);
 }
 //Rest tempale
 //Feing

@@ -3,6 +3,8 @@ package academiadigital.servicio_cursos.exception;
 //Esta clase escuchara las excepciones de cualquier @RestController
 
 import academiadigital.servicio_cursos.dto.ErrorResponseDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -15,6 +17,8 @@ import java.util.Map;
 //Esto le indica a Spring que esta clase debe escuchar exepciones de cualquier @RestController
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(RecursoNoEncontradoException.class)
     public ResponseEntity<ErrorResponseDto> handleRecursoNoEncontradoException(
