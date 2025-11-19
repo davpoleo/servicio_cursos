@@ -1,14 +1,12 @@
 package academiadigital.servicio_cursos.client;
 
 import academiadigital.servicio_cursos.dto.EstudianteResponseDto;
-import academiadigital.servicio_cursos.service.util.ApiConstants;
 import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import static academiadigital.servicio_cursos.service.util.ApiConstants.*;
+import static academiadigital.servicio_cursos.util.ApiConstants.*;
 
 
 @FeignClient(

@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static academiadigital.servicio_cursos.util.ApiConstants.ERROR_VALIDACION_ID_DUPLICADO;
+import static academiadigital.servicio_cursos.util.ApiConstants.ERROR_VALIDACION_ID_NO_ENCONTRADO;
+
 @Service
 @Slf4j
 public class CursoServiceImpl implements CursoService {
@@ -35,7 +38,7 @@ public class CursoServiceImpl implements CursoService {
     @Transactional
     public CursoResponseDto crearCurso(CursoRequestDto request) {
         cursosRepository.findById(request.id()).ifPresent(crs ->{
-           throw new RecursoDuplicadoException("El curso '"+request.titulo()+"' ya existe.");
+           throw new RecursoDuplicadoException(ERROR_VALIDACION_ID_DUPLICADO);
         });
         Curso curso = new Curso();
         curso.setTitulo(request.titulo());
@@ -50,6 +53,8 @@ public class CursoServiceImpl implements CursoService {
     public Curso obtenerCursoPorId(Long id) {
         log.info("Buscando curso por id especifico.");
         return cursosRepository.findById(id)
-                .orElseThrow(()-> new RecursoNoEncontradoException("El curso con el ID: '"+id+"' No existe."));
+                .orElseThrow(()-> new RecursoNoEncontradoException(ERROR_VALIDACION_ID_NO_ENCONTRADO));
     }
+
+
 }

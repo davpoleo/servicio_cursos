@@ -11,7 +11,7 @@ package academiadigital.servicio_cursos.service.impl;
         this.inscripcionRepository = inscripcionRepository;
     }
 
-    //------------- METODOS---------------//
+    //------------- METODOS VIEJOS ---------------//
 
     //Conversion de Model a DTO
     private CursoDto mapearCursoADto(Curso curso){

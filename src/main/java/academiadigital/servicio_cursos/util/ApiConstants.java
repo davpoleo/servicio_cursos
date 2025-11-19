@@ -1,4 +1,4 @@
-package academiadigital.servicio_cursos.service.util;
+package academiadigital.servicio_cursos.util;
 
 public class ApiConstants {
     private ApiConstants(){    }
@@ -15,7 +15,10 @@ public class ApiConstants {
     public static final String FEING_V1_ESTUDIANTES_PATH = "/api/v1/estudiantes";
 
     //MENSAJES DE ERROR DE VALIDACION
-
+    public static final String ERROR_VALIDACION_ID_DUPLICADO = "El ID del curso ingresado no esta disponible.";
+    public static final String ERROR_VALIDACION_ID_NO_ENCONTRADO = "El ID del curso ingresado no existe.";
+    public static final String ERROR_VALIDACION_ID_CURSO_NO_ENCONTRADO = "No se ha encontrado el ID del curso.";
+    public static final String ERROR_VALIDACION_ID_ESTUDIANTE = "El ID del estudiante no existe.";
 
     //TRAZABILIDAD
     public static final String TRACE_ID_HEADER = "X-Trace-Id";
@@ -24,3 +27,4 @@ public class ApiConstants {
     //MENSAJES DE ERROR DE NEGOCIO
 
 }
+

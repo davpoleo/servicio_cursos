@@ -1,6 +1,6 @@
 package academiadigital.servicio_cursos.config;
 
-import academiadigital.servicio_cursos.service.util.ApiConstants;
+import academiadigital.servicio_cursos.util.ApiConstants;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

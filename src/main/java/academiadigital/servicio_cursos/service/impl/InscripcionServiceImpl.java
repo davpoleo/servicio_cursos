@@ -7,6 +7,7 @@ import academiadigital.servicio_cursos.dto.InscripcionResponseDto;
 import academiadigital.servicio_cursos.exception.RecursoNoEncontradoException;
 import academiadigital.servicio_cursos.mapper.MapperInscripcion;
 import academiadigital.servicio_cursos.model.Inscripcion;
+import academiadigital.servicio_cursos.repository.CursosRepository;
 import academiadigital.servicio_cursos.repository.InscripcionRepository;
 import academiadigital.servicio_cursos.service.InscripcionService;
 import feign.FeignException;
@@ -16,6 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static academiadigital.servicio_cursos.util.ApiConstants.ERROR_VALIDACION_ID_CURSO_NO_ENCONTRADO;
+import static academiadigital.servicio_cursos.util.ApiConstants.ERROR_VALIDACION_ID_ESTUDIANTE;
 
 @Service
 public class InscripcionServiceImpl implements InscripcionService {
@@ -27,6 +33,8 @@ public class InscripcionServiceImpl implements InscripcionService {
     private InscripcionRepository inscripcionRepository;
     @Autowired
     private MapperInscripcion mapperInscripcion;
+    @Autowired
+    private CursosRepository cursosRepository;
 
     //Obtener informacion de estudiante especifico con el uso de Feing Client
     @Override
@@ -43,8 +51,19 @@ public class InscripcionServiceImpl implements InscripcionService {
             return mapperInscripcion.MapearInscripcionADto(nuevaInscripcion);
         }catch (FeignException.NotFound error){
             log.warn("Estudiante con ID {} no encontrado al consultar servicio", request.estudianteId());
-            throw new RecursoNoEncontradoException("Error - Estudiante con ID "+request.estudianteId()+" No existe");
+            throw new RecursoNoEncontradoException(ERROR_VALIDACION_ID_ESTUDIANTE);
         }
     }
 
+    public List<Long> obtenerEstudiantePorCurso(Long cursoId){
+        //Se verifica si el curso existe
+        if(!cursosRepository.existsById(cursoId)){
+            throw new RecursoNoEncontradoException(ERROR_VALIDACION_ID_CURSO_NO_ENCONTRADO);
+        }
+        List<Inscripcion> inscripciones = inscripcionRepository.findByCursoId(cursoId);
+        //Uso de Streams para mapear la lista de objetos Inscripcion a una Lista de Long (Solos los Ids)
+        return inscripciones.stream()
+                .map(Inscripcion::getEstudianteId)
+                .collect(Collectors.toList());
+    }
 }

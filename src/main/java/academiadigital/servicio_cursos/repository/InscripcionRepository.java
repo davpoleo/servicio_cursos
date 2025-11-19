@@ -9,4 +9,5 @@ import java.util.List;
 
 @Repository
 public interface InscripcionRepository extends JpaRepository<Inscripcion, Long>, JpaSpecificationExecutor<Inscripcion> {
+    List<Inscripcion> findByCursoId(Long cursoId);
 }
